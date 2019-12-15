@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+pm2 startOrRestart ecosystem.config.js --watch --no-daemon --no-autorestart --wait-ready
