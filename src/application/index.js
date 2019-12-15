@@ -55,6 +55,7 @@ const options = {
   playground: '/playground',
 };
 
-server.start(options, ({ port }) => console.log(
-  `Server started, listening on port ${port} for incoming requests.`,
-));
+server.start(options, ({ port }) => {
+  console.log(`Server started, listening on port ${port} for incoming requests.`);
+  process.send('ready');
+});
