@@ -1,6 +1,9 @@
 module.exports = {
   extends: 'airbnb-base',
   parser: 'babel-eslint',
+  settings: {
+    'import/resolver': 'module-alias',
+  },
   "globals": {
     "describe": true,
     "expect": true,
