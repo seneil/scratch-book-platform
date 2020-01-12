@@ -7,6 +7,8 @@
   "scripts": {
     "dev": "bash ./config/bin/develop",
     "lint": "eslint --cache -c .eslintrc.js --ext .js src/application",
+    "prisma-deploy": "prisma deploy --env-file variables.env",
+    "prisma-info": "prisma info --env-file variables.env",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -28,18 +30,24 @@
     "@babel/plugin-proposal-object-rest-spread": "7.6.2",
     "@babel/preset-env": "7.6.3",
     "@babel/register": "7.6.2",
+    "cookie-parser": "1.4.4",
+    "dotenv": "8.2.0",
     "graphql-yoga": "1.18.3",
-    "module-alias": "2.2.2"
+    "jsonwebtoken": "8.5.1",
+    "module-alias": "2.2.2",
+    "prisma-binding": "2.3.16",
+    "prisma-client-lib": "1.34.10"
   },
   "devDependencies": {
     "babel-eslint": "10.0.3",
     "eslint": "6.1.0",
     "eslint-config-airbnb-base": "14.0.0",
+    "eslint-import-resolver-module-alias": "github:tenfold/eslint-import-resolver-module-alias",
     "eslint-plugin-import": "2.18.2",
     "eslint-plugin-jsx-a11y": "6.2.3",
     "pm2": "4.2.1"
   },
   "_moduleAliases": {
-    "app": "./src/application"
+    "application": "./src/application"
   }
 }

@@ -1,0 +1,46 @@
+enum Role {
+  ADMIN
+  CUSTOMER
+}
+
+enum Kind {
+  ARTICLE
+}
+
+type User {
+  id: ID! @id
+  email: String! @unique
+  password: String!
+  name: String!
+  notes: [Note!]!
+  registeredAt: DateTime! @createdAt
+  role: Role! @default(value: CUSTOMER)
+}
+
+type Keyword {
+  id: ID! @id
+  name: String!
+  notes: [Note!]!
+}
+
+type Attachment {
+  id: ID! @id
+  url: String
+  title: String
+  description: String
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  kind: Kind! @default(value: ARTICLE)
+  note: Note!
+}
+
+type Note {
+  id: ID! @id
+  body: String!
+  keywords: [Keyword!]!
+  attachments: [Attachment!]!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  isPublished: Boolean! @default(value: false)
+  author: User!
+}

@@ -1,3 +1,5 @@
+require('dotenv').config({ path: 'variables.env' });
+
 require('@babel/register')({
   ignore: [/(node_modules)/],
   presets: ['@babel/preset-env'],
