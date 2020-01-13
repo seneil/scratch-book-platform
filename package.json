@@ -30,6 +30,7 @@
     "@babel/plugin-proposal-object-rest-spread": "7.6.2",
     "@babel/preset-env": "7.6.3",
     "@babel/register": "7.6.2",
+    "bcryptjs": "2.4.3",
     "cookie-parser": "1.4.4",
     "dotenv": "8.2.0",
     "graphql-yoga": "1.18.3",
