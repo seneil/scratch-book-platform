@@ -46,6 +46,12 @@ const Mutation = {
       throw new Error('No such user found');
     });
   },
+
+  signout: (parent, args, { response }) => {
+    response.clearCookie('token');
+
+    return { message: 'Goodbye!' };
+  },
 };
 
 export default Mutation;
