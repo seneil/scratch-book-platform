@@ -26,5 +26,5 @@ graphqlServer.express.use((request, resolve, next) => {
 
 graphqlServer.start(options, ({ port }) => {
   console.log(`Server started, listening on port ${port} for incoming requests.`);
-  process.send('ready');
+  if (process.send) process.send('ready');
 });
