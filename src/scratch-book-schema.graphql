@@ -11,11 +11,17 @@ type User {
   role: Role!
 }
 
+input KeywordSendMixed {
+  id: ID
+  name: String
+}
+
 type Query {
   me: User
 }
 
 type Mutation {
+  createNote(body: String!, keywords: [KeywordSendMixed!]): Note!
   signup(email: String!, password: String!, name: String!): User!
   signin(email: String!, password: String!): User!
   signout: SuccessMessage

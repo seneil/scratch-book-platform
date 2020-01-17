@@ -12,7 +12,36 @@ const responseToken = (response, userId) => {
   });
 };
 
+const prepareKeywords = keywords => {
+  const create = keywords
+    .filter(({ id }) => !id)
+    .map(({ name }) => ({ name: name.toLowerCase() }));
+
+  const connect = keywords
+    .filter(({ id }) => id);
+
+  return {
+    ...(create.length ? { create } : {}),
+    ...(connect.length ? { connect } : {}),
+  };
+};
+
 const Mutation = {
+  createNote: (parent, args, { request, db }, info) => {
+    const { userId } = request;
+    const { body, keywords } = args;
+
+    return db.mutation.createNote({
+      data: {
+        body,
+        keywords: prepareKeywords(keywords),
+        author: {
+          connect: { id: userId },
+        },
+      },
+    }, info);
+  },
+
   signup: (parent, args, { response, db }, info) => {
     const salt = bcrypt.genSaltSync(10);
     const password = bcrypt.hashSync(args.password, salt);
