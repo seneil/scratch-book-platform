@@ -11,17 +11,25 @@ type User {
   role: Role!
 }
 
-input KeywordSendMixed {
+input KeywordMixedInput {
   id: ID
   name: String
 }
 
+input NoteCreateInput {
+  body: String!
+  actualAt: DateTime
+  keywords: [KeywordMixedInput!]
+}
+
 type Query {
   me: User
+  notes(where: NoteWhereInput, orderBy: NoteOrderByInput, skip: Int, first: Int): [Note]!
+  note(where: NoteWhereUniqueInput!): Note
 }
 
 type Mutation {
-  createNote(body: String!, keywords: [KeywordSendMixed!]): Note!
+  createNote(data: NoteCreateInput): Note!
   signup(email: String!, password: String!, name: String!): User!
   signin(email: String!, password: String!): User!
   signout: SuccessMessage
