@@ -27,13 +27,18 @@ const prepareKeywords = keywords => {
 };
 
 const Mutation = {
-  createNote: (parent, args, { request, db }, info) => {
+  createNote: (parent, { data }, { request, db }, info) => {
     const { userId } = request;
-    const { body, keywords } = args;
+    const {
+      body,
+      actualAt = new Date().toISOString(),
+      keywords = [],
+    } = data;
 
     return db.mutation.createNote({
       data: {
         body,
+        actualAt,
         keywords: prepareKeywords(keywords),
         author: {
           connect: { id: userId },
