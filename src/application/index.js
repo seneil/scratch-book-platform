@@ -8,6 +8,7 @@ const options = {
   port: 8000,
   endpoint: '/graphql',
   playground: '/playground',
+  bodyParserOptions: { limit: '3mb', type: 'application/json' },
 };
 
 graphqlServer.express.use(cookieParser());
