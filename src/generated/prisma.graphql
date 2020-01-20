@@ -1,5 +1,5 @@
-# source: https://eu1.prisma.sh/dmitry-shvalyov-a513a0/scratch-book/dev
-# timestamp: Sun Dec 29 2019 21:57:52 GMT+0300 (GMT+03:00)
+# source: http://localhost:4466/scratch-book/dev
+# timestamp: Sun Jan 19 2020 13:54:38 GMT+0300 (GMT+03:00)
 
 type AggregateAttachment {
   count: Int!
@@ -1030,6 +1030,7 @@ type Note implements Node {
   body: String!
   keywords(where: KeywordWhereInput, orderBy: KeywordOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Keyword!]
   attachments(where: AttachmentWhereInput, orderBy: AttachmentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Attachment!]
+  actualAt: DateTime!
   createdAt: DateTime!
   updatedAt: DateTime!
   isPublished: Boolean!
@@ -1049,6 +1050,7 @@ type NoteConnection {
 input NoteCreateInput {
   id: ID
   body: String!
+  actualAt: DateTime!
   isPublished: Boolean
   keywords: KeywordCreateManyWithoutNotesInput
   attachments: AttachmentCreateManyWithoutNoteInput
@@ -1073,6 +1075,7 @@ input NoteCreateOneWithoutAttachmentsInput {
 input NoteCreateWithoutAttachmentsInput {
   id: ID
   body: String!
+  actualAt: DateTime!
   isPublished: Boolean
   keywords: KeywordCreateManyWithoutNotesInput
   author: UserCreateOneWithoutNotesInput!
@@ -1081,6 +1084,7 @@ input NoteCreateWithoutAttachmentsInput {
 input NoteCreateWithoutAuthorInput {
   id: ID
   body: String!
+  actualAt: DateTime!
   isPublished: Boolean
   keywords: KeywordCreateManyWithoutNotesInput
   attachments: AttachmentCreateManyWithoutNoteInput
@@ -1089,6 +1093,7 @@ input NoteCreateWithoutAuthorInput {
 input NoteCreateWithoutKeywordsInput {
   id: ID
   body: String!
+  actualAt: DateTime!
   isPublished: Boolean
   attachments: AttachmentCreateManyWithoutNoteInput
   author: UserCreateOneWithoutNotesInput!
@@ -1108,6 +1113,8 @@ enum NoteOrderByInput {
   id_DESC
   body_ASC
   body_DESC
+  actualAt_ASC
+  actualAt_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -1119,6 +1126,7 @@ enum NoteOrderByInput {
 type NotePreviousValues {
   id: ID!
   body: String!
+  actualAt: DateTime!
   createdAt: DateTime!
   updatedAt: DateTime!
   isPublished: Boolean!
@@ -1213,6 +1221,28 @@ input NoteScalarWhereInput {
 
   """All values not ending with the given string."""
   body_not_ends_with: String
+  actualAt: DateTime
+
+  """All values that are not equal to given value."""
+  actualAt_not: DateTime
+
+  """All values that are contained in given list."""
+  actualAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  actualAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  actualAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  actualAt_lte: DateTime
+
+  """All values greater than the given value."""
+  actualAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  actualAt_gte: DateTime
   createdAt: DateTime
 
   """All values that are not equal to given value."""
@@ -1302,6 +1332,7 @@ input NoteSubscriptionWhereInput {
 
 input NoteUpdateInput {
   body: String
+  actualAt: DateTime
   isPublished: Boolean
   keywords: KeywordUpdateManyWithoutNotesInput
   attachments: AttachmentUpdateManyWithoutNoteInput
@@ -1310,11 +1341,13 @@ input NoteUpdateInput {
 
 input NoteUpdateManyDataInput {
   body: String
+  actualAt: DateTime
   isPublished: Boolean
 }
 
 input NoteUpdateManyMutationInput {
   body: String
+  actualAt: DateTime
   isPublished: Boolean
 }
 
@@ -1356,6 +1389,7 @@ input NoteUpdateOneRequiredWithoutAttachmentsInput {
 
 input NoteUpdateWithoutAttachmentsDataInput {
   body: String
+  actualAt: DateTime
   isPublished: Boolean
   keywords: KeywordUpdateManyWithoutNotesInput
   author: UserUpdateOneRequiredWithoutNotesInput
@@ -1363,6 +1397,7 @@ input NoteUpdateWithoutAttachmentsDataInput {
 
 input NoteUpdateWithoutAuthorDataInput {
   body: String
+  actualAt: DateTime
   isPublished: Boolean
   keywords: KeywordUpdateManyWithoutNotesInput
   attachments: AttachmentUpdateManyWithoutNoteInput
@@ -1370,6 +1405,7 @@ input NoteUpdateWithoutAuthorDataInput {
 
 input NoteUpdateWithoutKeywordsDataInput {
   body: String
+  actualAt: DateTime
   isPublished: Boolean
   attachments: AttachmentUpdateManyWithoutNoteInput
   author: UserUpdateOneRequiredWithoutNotesInput
@@ -1491,6 +1527,28 @@ input NoteWhereInput {
 
   """All values not ending with the given string."""
   body_not_ends_with: String
+  actualAt: DateTime
+
+  """All values that are not equal to given value."""
+  actualAt_not: DateTime
+
+  """All values that are contained in given list."""
+  actualAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  actualAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  actualAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  actualAt_lte: DateTime
+
+  """All values greater than the given value."""
+  actualAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  actualAt_gte: DateTime
   createdAt: DateTime
 
   """All values that are not equal to given value."""

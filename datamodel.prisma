@@ -31,7 +31,7 @@ type Attachment {
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
   kind: Kind! @default(value: ARTICLE)
-  note: Note!
+  note: Note! @relation(link: INLINE)
 }
 
 type Note {
@@ -39,8 +39,9 @@ type Note {
   body: String!
   keywords: [Keyword!]!
   attachments: [Attachment!]!
+  actualAt: DateTime!
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
   isPublished: Boolean! @default(value: false)
-  author: User!
+  author: User! @relation(link: INLINE)
 }
