@@ -5,11 +5,21 @@
   "description": "GraphQL Scratch Book backend",
   "main": "./src/index.js",
   "scripts": {
+    "start": "ntl -d -o",
     "dev": "bash ./config/bin/develop",
-    "lint": "eslint --cache -c .eslintrc.js --ext .js src/application",
+    "lint": "eslint --cache -c .eslintrc.js --ext .js ecosystem.config.js src/application",
     "prisma-deploy": "prisma deploy --env-file variables.env",
+    "prisma-token": "prisma cluster-token --env-file variables.env",
     "prisma-info": "prisma info --env-file variables.env",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "ntl": {
+    "descriptions": {
+      "dev": "Запуск режима разработки",
+      "lint": "Линтинг кода проекта",
+      "prisma-deploy": "Деплой схемы Prisma",
+      "prisma-info": "Информация о Prisma"
+    }
   },
   "repository": {
     "type": "git",
@@ -46,6 +56,7 @@
     "eslint-import-resolver-module-alias": "github:tenfold/eslint-import-resolver-module-alias",
     "eslint-plugin-import": "2.18.2",
     "eslint-plugin-jsx-a11y": "6.2.3",
+    "ntl": "5.0.0",
     "pm2": "4.2.1"
   },
   "_moduleAliases": {
